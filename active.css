@@ -1,0 +1,429 @@
+body {
+    margin: 0;
+
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    color: #6c7279;
+    -webkit-font-smoothing: antialiased;  /* это свойство немного сгладит шрифты' */
+
+    background-color: #fff;
+}   
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+
+/* Container
+============================================== */
+.container{
+    width: 100%;
+    max-width: 1200px; /* а не 1170 px, так как мы добавила padding по бокам, таким образом места для контента теперь осталось 1170 + 30px для пэддинга */
+    margin: 0 auto;
+    padding: 0 15px;  /*  чтобы при адаптации на других устройствах элементы не прилегали к стороным экраан, а был отступ  */
+}
+
+
+/* Header
+============================================== */
+
+
+.header {
+    width: 100%;
+    height: 100px;
+
+    position: absolute; /* позволяет сделать один блок над другим, например сейчас блок с лого и меню находится над блоком intro*/
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+}
+
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 0;
+    align-items: center; /*позволяет выровнить ссылки меню и логотип по центру относительно горизонта */
+
+    border-bottom: 1px solid #505269;
+}
+
+
+/* Nav 
+============================================== */
+.nav {
+    display: flex ;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+}
+.nav__link {
+    margin-left: 50px;
+
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.75;
+
+    transition: opacity 0.1s linear;
+    
+}
+
+.nav__link:first-child {
+    margin-left: 0px;
+}
+
+.nav__link:hover {
+    opacity: 1;
+}
+
+
+/* Intro
+============================================== */
+
+.intro {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 750px;
+    padding-top: 100px;
+
+    background: #2a2e48 url("img/intro-bg.jpg") center no-repeat /cover;
+}
+
+
+.intro__inner {
+    width: 100%;
+    max-width: 970px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.intro__title {
+    margin: 0 0 30px;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 65px;
+    line-height: 1.1; /* чтобы при изменении шрифта относительное расстояние менялось соразмерно, лучше не писать размеры в пикселях как  71px */
+    color: #fff;
+    font-weight: 700;
+
+    text-transform: uppercase;
+  
+    
+}
+
+.intro__subtitle {
+    margin-bottom: 60px;
+    font-size: 22px;
+    color: #fff;
+    line-height: 1,5;  /* а не 33 px */
+    font-weight: 400;
+}
+
+/* Button
+============================================== */
+.btn {
+    display: inline-block;  /*  чтобы мы могли задавать пэддинги */
+    vertical-align: top; /*выравнивание по вертикальной границе делаем по верху */
+    padding: 14px 40px;
+  
+    border-radius: 2px;
+
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition: background .1s linear;
+
+}
+
+.btn--red {
+    background-color: #e84545;
+}
+
+.btn--red:hover {
+    background-color: #da3737;
+}
+
+/* Features
+============================================== */
+
+.features {
+    display: flex;
+    flex-wrap: wrap; /*  элементы, котораы не помещаются на строку, будут перемещаться на вторую */
+    margin: 95px 0;
+
+}
+
+.features__item {
+    width: 33.3333%;
+    padding: 28px;
+    margin: 25px 0;
+
+    text-align: center;
+
+}
+
+.features__icon {
+    margin-bottom: 25px;
+
+}
+
+.features__title {
+    font-size: 14;
+    color: #2d3033;
+    font-weight: 700;
+    text-transform: uppercase;
+     
+    margin-bottom: 20px;
+}
+
+.features__text {
+    font-size: 14px;
+    color: #6c7279;
+    line-height: 1.5;
+
+}
+
+/* Works
+============================================== */
+.works {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.works__item { /* чтобы картинка позицианировалась абсолютно отноистельно нашего works__item, мы прописываем position: relative для works_item и position: absolute для картинки */
+    width: 25%;
+    height: 350px;
+
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff; ;
+
+    position:relative;
+    overflow: hidden; /* таким образом скрываем лишнюю часть, которая вылезает за пределы блока works__item */
+}
+
+.works__item:hover .works__content {
+    opacity: 1;
+}
+
+
+.works__photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;   /* придимаем картинку к верху и лево а процентами форматируем картинку так, чтобы показывать ее центральную часть по осям х и у */
+    z-index: 1; /* а у текста на поверх картинки будет индекс 2 */
+
+    transform: translate3d(-50%, -50%, 0); /* чтобы картинка показывала именно центральную часть */
+} 
+.works__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* выровняли контент по центру по горизонатли*/
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(232, 69, 69, 0.9); /* указываем цвет в rgba формате, потому что у фона естьнепрозрачноть (четвертый параметор) */
+    opacity: 0; /* потому что нам нужно показывать контент только при наводе*/
+
+    text-align: center;/* выровняли контент по центру по вертикали*/
+
+    position: absolute;
+    top: 0;
+    left: 0;   
+    z-index: 2; /* таким образом текст будет поверх фотографии */
+
+    transition: opacity 0.2s linear;
+}
+
+.works__title {
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.works__text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+}
+
+/* Team
+========================== */
+.team {
+    margin: 100px 0 70px; /* так как внищу должно быть 100, но мы сделали и items margin-bottom 30px, в сумме получается 100 */
+}
+
+.team__inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;  /* таким образом уравниваем показатели, которые задали padding для team__prof, таким образов team__inner начинается левее, чнп наш контейнер, а контент ровно по стороне контейнера.*/
+}
+
+.team__item {
+    width: 25%;
+    padding: 0 15px;  /* в сумме они дадут 30px между элементами*/
+    margin-bottom: 30px;
+}
+
+.team__photo {
+    margin-bottom: 20px;
+    display: block;
+    max-width: 100%;
+    height: auto;   /* эти три строки для того, чnобы размер каринки менялся относително разных экранов */
+}
+
+.team__name {
+    font-size: 22px;
+    color: #2d3033;
+    margin-bottom: 8px;
+}
+
+.team__prof {
+    margin-bottom: 20px;
+
+    font-size: 13px;
+    color: #e84545;
+    text-transform: uppercase;
+}
+
+.team__text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6c7279;
+
+    margin-bottom: 15px;
+}
+
+/* Social
+========================== */
+.social {
+    display: flex;
+}
+
+.social__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+
+    background-color: #fff;
+    border: 1px solid #e8ecee;
+
+     transition: background .1s linear;
+
+}
+
+.social__item:hover {
+    background-color: #e8ecee ;
+}
+
+.social__item:hover .social__icon {
+    fill: #000;
+}
+
+.social__icon {
+    fill: #c6cacc;
+    display: block;
+    height: 18px;
+
+    transition: fill .1s linear;
+}
+
+/* Teastimoials
+========================== */
+
+.testimonials {
+    overflow: hidden;  /*чтобы если картинки были большими, они не выходили за границу блока*/
+    background-color: #53354a;
+}
+
+.testimonials__item {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.testimonials__photo {
+    width: 50%;
+    height: 500px;
+    position: relative;
+}
+
+.testimonials__img {
+    position: absolute;
+    top: 50%;  /* потому что если поставим 0, то если картинка будет больше чем 500 пикселей по высоте, то она будет отцентрованна по вертикали */
+    right: 0;
+    z-index: 1;
+
+    transform: translateY(-50%);
+}
+
+.testimonials__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding-left: 80px;
+
+} 
+
+.testimonials__text {
+    margin-bottom: 20px;
+    font-family: 'Cardo', sans-serif;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.testimonials__author {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+/* Download
+========================== */
+
+.download {
+    margin: 90px 0;
+    text-align: center;
+
+}
+
+.download__title {
+    margin-bottom: 5px;
+    font-size: 28px;
+    color: #2d3033;
+    font-weight: 300;
+}
+
+.download__text {
+    font-size: 13px;
+    color: #2d3033;
+    font-weight: 700;
+    text-transform: uppercase;
+}
